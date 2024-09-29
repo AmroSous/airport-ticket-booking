@@ -1,0 +1,4 @@
+DepartureCountry,DestinationCountry,DepartureDate,DepartureAirport,ArrivalAirport,EconomySeats,EconomyPrice,BusinessSeats,BusinessPrice,FirstClassSeats,FirstClassPrice
+USA,UK,2024-10-01 10:00:00,Los Angeles,Heathrow,100,500.00,50,1200.00,10,2500.00
+France,Germany,2024-11-01 12:00:00,Charles De Gaulle,Frankfurt,120,300.00,60,800.00,15,1800.00
+France,Germany,2024-11-01 12:00:00,Charles De Gaulle,Frankfurt,120,300.00,,,15,1800.00
