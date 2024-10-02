@@ -16,6 +16,6 @@ public class TravelClassDetails(double price, int seats)
 
     public override string ToString()
     {
-        return $$"""{ "Price": {{Price}}, "Total Seats": {{TotalSeats}} }""";
+        return $$""" {{Price}}$, {{TotalSeats}} seats""";
     }
 }

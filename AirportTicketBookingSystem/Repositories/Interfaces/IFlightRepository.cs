@@ -10,4 +10,6 @@ public interface IFlightRepository
     OperationResult AddFlights(List<Flight> flights);
 
     Task SaveDataAsync();
+
+    Flight? GetFlightById(int flightId);
 }

@@ -1,5 +1,5 @@
 ﻿using AirportTicketBookingSystem.Models;
-using AirportTicketBookingSystem.Utilities;
+using AirportTicketBookingSystem.Utilities.Security;
 
 namespace AirportTicketBookingSystem.Factories;
 

@@ -2,7 +2,7 @@
 using AirportTicketBookingSystem.Models;
 using AirportTicketBookingSystem.Repositories.Interfaces;
 using AirportTicketBookingSystem.Services.Interfaces;
-using AirportTicketBookingSystem.Utilities;
+using AirportTicketBookingSystem.Utilities.Security;
 using Microsoft.Extensions.Options;
 
 namespace AirportTicketBookingSystem.Services;
@@ -37,5 +37,10 @@ public class PassengerService : IPassengerService
     {
         return (_settings?.adminPrevillages?.Username?.Equals(username) ?? false)
             && (_settings?.adminPrevillages?.Password?.Equals(password) ?? false);
+    }
+
+    public Passenger? GetPassenger(string username)
+    {
+        return _passengerRepository.FindPassengerByUsername(username);
     }
 }

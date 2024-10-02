@@ -56,4 +56,9 @@ public class FlightRepository : AbstractRepository, IFlightRepository
     {
         await SaveDataAsync(_flights);
     }
+
+    public Flight? GetFlightById(int flightId)
+    {
+        return _flights.SingleOrDefault(flight => flight.Id == flightId);
+    }
 }

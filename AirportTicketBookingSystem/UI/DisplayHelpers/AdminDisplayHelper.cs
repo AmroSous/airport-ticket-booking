@@ -1,6 +1,6 @@
 ﻿using AirportTicketBookingSystem.Models;
-using static AirportTicketBookingSystem.Utilities.ConsolePrinter;
-using static AirportTicketBookingSystem.Utilities.ConsoleReader;
+using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsolePrinter;
+using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsoleReader;
 
 namespace AirportTicketBookingSystem.UI.DisplayHelpers;
 
@@ -59,5 +59,20 @@ public static class AdminDisplayHelper
             
 
             """, ConsoleColor.Yellow);
+    }
+
+    public static void ShowAllBookings(Dictionary<string, List<Booking>> bookings)
+    {
+        foreach (var userBookings in bookings)
+        {
+            PrintLine($"{userBookings.Key}", ConsoleColor.Yellow);
+            PrintLine("═════════════════════════════════════════════════════════════", ConsoleColor.DarkRed);
+
+            foreach (var booking in userBookings.Value)
+            {
+                PrintLine(booking.ToString(), ConsoleColor.Blue);
+                PrintLine("──────────────────────────────────────────────────────", ConsoleColor.DarkGray);
+            }
+        }
     }
 }

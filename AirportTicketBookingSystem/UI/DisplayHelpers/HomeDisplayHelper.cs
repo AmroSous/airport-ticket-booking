@@ -1,4 +1,4 @@
-﻿using static AirportTicketBookingSystem.Utilities.ConsolePrinter;
+﻿using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsolePrinter;
 
 namespace AirportTicketBookingSystem.UI.DisplayHelpers;
 

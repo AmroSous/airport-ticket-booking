@@ -39,7 +39,9 @@ public class BookingRepository : AbstractRepository, IBookingRepository
 
     public OperationResult AddBooking(Booking booking)
     {
-        _bookings[booking.Passenger.Username].Add(booking);
+        string username = booking.Passenger.Username;
+        if (_bookings.ContainsKey(username)) _bookings[booking.Passenger.Username].Add(booking);
+        else _bookings.Add(username, [booking]);
         Dirty = true;
         return new(true, "Flight booked successfully.");
     }

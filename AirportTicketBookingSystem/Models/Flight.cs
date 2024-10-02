@@ -60,17 +60,14 @@ public class Flight
     public override string ToString()
     {
         return $$"""
-            {
-                "ID": {{Id}},
-                "Departure Country": {{DepartureCountry}},
-                "Destination Country": {{DestinationCountry}},
-                "Departure Date": {{DepartureDate}},
-                "Departure Airport": {{DepartureAirport}},
-                "Arrival Airport": {{ArrivalAirport}},
-                "Economy": {{AvailableTravelClasses.GetValueOrDefault(TravelClassEnum.Economy)}},
-                "Business": {{AvailableTravelClasses.GetValueOrDefault(TravelClassEnum.Business)}},
-                "First Class": {{AvailableTravelClasses.GetValueOrDefault(TravelClassEnum.FirstClass)}}
-            }
+            ID: {{Id}},
+            Path: {{DepartureCountry}} ───> {{DestinationCountry}},
+            Airports: {{DepartureAirport}} ───> {{ArrivalAirport}},
+            Date: {{DepartureDate}},
+            Available classes: 
+                - Economy: {{AvailableTravelClasses.GetValueOrDefault(TravelClassEnum.Economy)}},
+                - Business: {{AvailableTravelClasses.GetValueOrDefault(TravelClassEnum.Business)}},
+                - First Class: {{AvailableTravelClasses.GetValueOrDefault(TravelClassEnum.FirstClass)}}
             """;
     }
 }

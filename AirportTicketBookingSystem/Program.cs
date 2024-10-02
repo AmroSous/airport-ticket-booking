@@ -9,7 +9,7 @@ using AirportTicketBookingSystem.Services;
 using AirportTicketBookingSystem.Repositories.Interfaces;
 using AirportTicketBookingSystem.Services.Interfaces;
 using AirportTicketBookingSystem.Factories;
-using AirportTicketBookingSystem.Utilities;
+using AirportTicketBookingSystem.Utilities.Security;
 
 namespace AirportTicketBookingSystem;
 
@@ -38,6 +38,7 @@ public static class Program
                 services.AddSingleton<IPassengerRepository, PassengerRepository>();
                 services.AddSingleton<IBookingRepository, BookingRepository>();
                 services.AddSingleton<FlightFactory>();
+                services.AddSingleton<UserSession>();
                 services.AddTransient<IdGenerator>();
                 services.AddTransient<AdminUI>();
                 services.AddTransient<PassengerUI>();

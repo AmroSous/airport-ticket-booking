@@ -1,4 +1,4 @@
-﻿namespace AirportTicketBookingSystem.Utilities;
+﻿namespace AirportTicketBookingSystem.Utilities.CSV;
 
 public static class CSVFileReader
 {

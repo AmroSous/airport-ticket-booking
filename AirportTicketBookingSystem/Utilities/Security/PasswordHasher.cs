@@ -1,13 +1,13 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace AirportTicketBookingSystem.Utilities;
+namespace AirportTicketBookingSystem.Utilities.Security;
 
 public static class PasswordHasher
 {
-    private static readonly int _keySize = 64;  
-    private static readonly int _iterations = 350000;  
-    private static readonly HashAlgorithmName _hashAlgorithm = HashAlgorithmName.SHA512;  
+    private static readonly int _keySize = 64;
+    private static readonly int _iterations = 350000;
+    private static readonly HashAlgorithmName _hashAlgorithm = HashAlgorithmName.SHA512;
 
     public static string HashPassword(string password)
     {

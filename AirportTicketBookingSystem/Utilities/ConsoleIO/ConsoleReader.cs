@@ -1,7 +1,7 @@
 ﻿using AirportTicketBookingSystem.CustomExceptions;
-using static AirportTicketBookingSystem.Utilities.ConsolePrinter;
+using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsolePrinter;
 
-namespace AirportTicketBookingSystem.Utilities;
+namespace AirportTicketBookingSystem.Utilities.ConsoleIO;
 
 public static class ConsoleReader
 {
@@ -68,6 +68,6 @@ public static class ConsoleReader
         string input = Read();
         if (string.IsNullOrEmpty(input)) return false;
         if (input.Equals("y", StringComparison.OrdinalIgnoreCase)) return true;
-        return false; 
+        return false;
     }
 }

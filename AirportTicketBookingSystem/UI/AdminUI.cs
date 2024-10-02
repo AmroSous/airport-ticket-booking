@@ -1,7 +1,7 @@
 ﻿using AirportTicketBookingSystem.CustomExceptions;
 using AirportTicketBookingSystem.Services.Interfaces;
-using static AirportTicketBookingSystem.Utilities.ConsolePrinter;
-using static AirportTicketBookingSystem.Utilities.ConsoleReader;
+using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsolePrinter;
+using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsoleReader;
 using Microsoft.Extensions.Logging;
 using static AirportTicketBookingSystem.UI.DisplayHelpers.AdminDisplayHelper;
 using AirportTicketBookingSystem.Factories;
@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using AirportTicketBookingSystem.Models;
 using AirportTicketBookingSystem.Services;
 using AirportTicketBookingSystem.ModelValidation.ValidationHelper;
+using AirportTicketBookingSystem.Utilities.CSV;
 
 namespace AirportTicketBookingSystem.UI;
 
@@ -23,13 +24,16 @@ public class AdminUI : IUserInterface
 
     private readonly IFlightService _flightService;
 
+    private readonly IBookingService _bookingService;
+
     public AdminUI(IFlightService flightService, IOptions<AppSettings> options, 
-        ILogger<AdminUI> logger, FlightFactory flightFactory)
+        ILogger<AdminUI> logger, FlightFactory flightFactory, IBookingService bookingService)
     {
         _logger = logger;
         _flightFactory = flightFactory;
         _settings = options.Value;
         _flightService = flightService;
+        _bookingService = bookingService;
     }
 
     public void Start()
@@ -83,7 +87,8 @@ public class AdminUI : IUserInterface
 
     private void ShowBookingsProcedure()
     {
-        PrintLine("Not implemented yet.", ConsoleColor.Red);
+        var result = _bookingService.GetAllBookings();
+        ShowAllBookings(result);
         Pause("continue..");
     }
 
@@ -110,7 +115,7 @@ public class AdminUI : IUserInterface
         List<Flight> flights = [];
         foreach (var file in files)
         {
-            flights.AddRange(Utilities.CSVFlightReader.ReadFlightsFromCSV(file, _flightFactory));
+            flights.AddRange(CSVFlightReader.ReadFlightsFromCSV(file, _flightFactory));
         }
         return flights;
     }

@@ -1,7 +1,7 @@
 ﻿using AirportTicketBookingSystem.Factories;
 using AirportTicketBookingSystem.Models;
 
-namespace AirportTicketBookingSystem.Utilities;
+namespace AirportTicketBookingSystem.Utilities.CSV;
 
 // TODO: this implementation is bad because of hard coded fields names
 // may be refactored in future using reflection 

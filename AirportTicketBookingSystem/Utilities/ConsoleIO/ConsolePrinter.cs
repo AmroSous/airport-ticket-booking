@@ -1,4 +1,4 @@
-﻿namespace AirportTicketBookingSystem.Utilities;
+﻿namespace AirportTicketBookingSystem.Utilities.ConsoleIO;
 
 public static class ConsolePrinter
 {

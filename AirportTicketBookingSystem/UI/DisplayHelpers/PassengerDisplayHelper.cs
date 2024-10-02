@@ -1,4 +1,5 @@
-﻿using static AirportTicketBookingSystem.Utilities.ConsolePrinter;
+﻿using AirportTicketBookingSystem.Models;
+using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsolePrinter;
 
 namespace AirportTicketBookingSystem.UI.DisplayHelpers;
 
@@ -28,11 +29,48 @@ public static class PassengerDisplayHelper
         ╔═══════════════════════════════════════════╗
         ║                                           ║
         ║   1- Search flights.                      ║
-        ║   2- Manage bookings.                     ║
-        ║   3- Logout.                              ║
+        ║   2- Book a flight.                       ║
+        ║   3- Manage bookings.                     ║
+        ║   4- Logout.                              ║
         ║                                           ║
         ╚═══════════════════════════════════════════╝
 
         """, ConsoleColor.Magenta);
+    }
+
+    public static void PrintListOfFlights(IEnumerable<Flight> flights)
+    {
+        PrintLine("──────────────────────────────────────────────────────", ConsoleColor.DarkGray);
+        foreach (var flight in flights)
+        {
+            PrintLine(flight.ToString(), ConsoleColor.Yellow);
+            PrintLine("──────────────────────────────────────────────────────", ConsoleColor.DarkGray);
+        }
+    }
+
+    public static void PrintAvailableSeatsDetails(Dictionary<TravelClassEnum, TravelClassDetails> classes)
+    {
+        foreach (var item in classes)
+        {
+            PrintLine($"{item.Key} => {item.Value}", ConsoleColor.Blue);
+        }
+    }
+
+    public static void PrintUserBookings(List<Booking> bookings)
+    {
+        if (bookings.Count == 0)
+        {
+            PrintLine("No available bookings.", ConsoleColor.Red);
+        }
+        else
+        {
+            int index = 1;
+            PrintLine("──────────────────────────────────────────────────────", ConsoleColor.DarkGray);
+            foreach (var item in bookings)
+            {
+                PrintLine($"{index++}: {item}", ConsoleColor.Blue);
+                PrintLine("──────────────────────────────────────────────────────", ConsoleColor.DarkGray);
+            }
+        }
     }
 }

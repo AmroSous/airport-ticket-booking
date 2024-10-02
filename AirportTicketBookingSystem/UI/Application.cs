@@ -1,12 +1,13 @@
 ﻿using static AirportTicketBookingSystem.UI.DisplayHelpers.HomeDisplayHelper;
-using static AirportTicketBookingSystem.Utilities.ConsoleReader;
-using static AirportTicketBookingSystem.Utilities.ConsolePrinter;
+using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsoleReader;
+using static AirportTicketBookingSystem.Utilities.ConsoleIO.ConsolePrinter;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AirportTicketBookingSystem.CustomExceptions;
 using AirportTicketBookingSystem.Services.Interfaces;
 using AirportTicketBookingSystem.Repositories.Interfaces;
+using AirportTicketBookingSystem.Utilities.Security;
 
 namespace AirportTicketBookingSystem.UI;
 
@@ -26,13 +27,16 @@ public class Application : IHostedService
 
     private readonly IBookingRepository _bookingRepository;
 
+    private readonly UserSession _session;
+
     public Application(IServiceProvider serviceProvider, 
         ILogger<Application> logger, 
         IPassengerService passengerService,
         IHostApplicationLifetime lifetime,
         IFlightRepository flightRepository,
         IPassengerRepository passengerRepository,
-        IBookingRepository bookingRepository)
+        IBookingRepository bookingRepository,
+        UserSession session)
     {
         _serviceProvider = serviceProvider;
         _logger = logger;
@@ -41,6 +45,7 @@ public class Application : IHostedService
         _flightRepository = flightRepository;
         _passengerRepository = passengerRepository;
         _bookingRepository = bookingRepository;
+        _session = session;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
@@ -68,6 +73,8 @@ public class Application : IHostedService
             catch (Exception ex)
             {
                 _logger.LogError("Exeption was thown: {Message}", ex.Message);
+                PrintLine("Unexpected exception thrown.", ConsoleColor.Red);
+                Pause("logout..");
                 break;
             }
         }
@@ -170,6 +177,7 @@ public class Application : IHostedService
         if (isValidUser)
         {
             IUserInterface userInterface = GetInterfaceService<PassengerUI>();
+            _session.SetUser(username, "");
             userInterface.Start();
         } 
         else
@@ -191,6 +199,7 @@ public class Application : IHostedService
         if (isAdmin)
         {
             IUserInterface userInterface = GetInterfaceService<AdminUI>();
+            _session.SetUser(username, "");
             userInterface.Start();
         }
         else

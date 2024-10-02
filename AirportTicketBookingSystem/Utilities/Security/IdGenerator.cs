@@ -1,4 +1,4 @@
-﻿namespace AirportTicketBookingSystem.Utilities;
+﻿namespace AirportTicketBookingSystem.Utilities.Security;
 
 /// <summary>
 /// Store set of ID's, 

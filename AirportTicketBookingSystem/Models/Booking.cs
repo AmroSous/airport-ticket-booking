@@ -23,5 +23,15 @@ namespace AirportTicketBookingSystem.Models
         public TravelClassEnum TravelClassEnum { get; init; }
 
         public DateTime BookingDate { get; init; }
+
+        public override string ToString()
+        {
+            return $"""
+                Book ID: {Id}
+                Flight #{Flight.Id}: {Flight.DepartureCountry} ──> {Flight.DestinationCountry} @ {Flight.DepartureDate}
+                Booking Date: {BookingDate}
+                Seat: {TravelClassEnum}
+                """;
+        }
     }
 }
